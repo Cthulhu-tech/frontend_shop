@@ -6,5 +6,5 @@ export const Protected = (props: {children: React.ReactNode}) => {
 
     const [userId] = useState(JwtDecode())
 
-    return userId ? <>{props.children}</> : <Navigate to="/" replace />
+    return userId ? <>{props.children}</> : <Navigate to="/auth" replace />
 }
