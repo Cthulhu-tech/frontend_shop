@@ -1,3 +1,4 @@
+import { RefreshToken } from '../components/protected/refreshToken'
 import { Registration } from '../view/registration/registration'
 import { createBrowserRouter } from "react-router-dom"
 import { Layout } from '../components/layout/layout'
@@ -11,11 +12,13 @@ import { Home } from '../view/home/home'
 import { Chat } from '../view/chat/chat'
 import { Auth } from '../view/auth/auth'
 import { User } from '../view/user/user'
+import { Protected } from '../components/protected/protected'
+import { NotProtected } from '../components/protected/notProtected';
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout/>,
+        element: <RefreshToken><Layout/></RefreshToken>,
         children: [
             {index: true, element: <Home/>},
             {
@@ -24,11 +27,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "chat",
-                element: <Chat/>,
+                element: <Protected><Chat/></Protected>,
             },
             {
                 path: 'auth',
-                element: <Auth/>,
+                element: <NotProtected><Auth/></NotProtected>,
                 children: [
                     { index: true, element: <Login/>},
                     {
@@ -43,7 +46,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "user",
-                element: <User/>,
+                element: <Protected><User/></Protected>,
             },
             {
                 path: "user/:nameAndSurname",
@@ -55,7 +58,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'create',
-                element: <Create />
+                element: <Protected><Create /></Protected>
             }
         ]
     }
