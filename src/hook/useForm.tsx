@@ -1,9 +1,9 @@
 import { ObjectValidation, useFormCallbackReturn } from './type'
 import { ChangeEvent, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
 import { updateToken } from '../redux/store/token'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
 
 export function useForm(validation: (data: ObjectValidation) => useFormCallbackReturn, url: string) {
 
@@ -22,10 +22,14 @@ export function useForm(validation: (data: ObjectValidation) => useFormCallbackR
 
         if(check) axios.post(process.env.REACT_APP_SERVER + url, data, { withCredentials: true })
         .then((data) => {
-            if(data.data.accesstoken) dispatch(updateToken(data.data.accesstoken))
-            setErrors({serverNotError: "Все успешно! Переход на главную страницу"})
-            setTimeout(() => navigate('/', { replace: true }), 2000)
-            
+            if(data.data.accesstoken){
+                dispatch(updateToken(data.data.accesstoken))
+                setErrors({serverNotError: "Все успешно! Переход на главную страницу"})
+                setTimeout(() => navigate('/', { replace: true }), 1000)
+                return
+            }            
+            setTimeout(() => navigate('/auth', { replace: true }), 1000)
+            setErrors({serverNotError: "Все успешно! Переход на страницу авторизации"})
         })
         .catch(() => setErrors({serverError: "Логин или пароль имеют ошибку"}))
     }
