@@ -3,6 +3,7 @@ import { ReduxStore } from '../../redux/type'
 import { NavLink } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useEffect } from 'react'
+import './nav.css'
 
 export const Nav = () => {
 
