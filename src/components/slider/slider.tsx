@@ -14,12 +14,11 @@ export const Slider = ({products}: {products: Products[]}) => {
     }, [products])
 
     return  <Swiper
-                className='m-5'
                 slidesPerView={3}
             >
                 {products.map((product) =>
-                        <SwiperSlide>
-                            <section className='card'>
+                        <SwiperSlide key={product.id}>
+                            <section className='card col-12'>
                                 <NavLink className="text-dark" to={"/product/" + product.id} key={product.id}>
                                     <div className="card-header bg-white text-primary">
                                         <h5 className="list-group-item mt-3">{product.title}</h5>
