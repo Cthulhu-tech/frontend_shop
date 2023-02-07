@@ -1,5 +1,7 @@
 import { RefreshToken } from '../components/protected/refreshToken'
+import { NotProtected } from '../components/protected/notProtected'
 import { Registration } from '../view/registration/registration'
+import { Protected } from '../components/protected/protected'
 import { createBrowserRouter } from "react-router-dom"
 import { Layout } from '../components/layout/layout'
 import { Delayed } from '../view/delayed/delayed'
@@ -12,8 +14,6 @@ import { Home } from '../view/home/home'
 import { Chat } from '../view/chat/chat'
 import { Auth } from '../view/auth/auth'
 import { User } from '../view/user/user'
-import { Protected } from '../components/protected/protected'
-import { NotProtected } from '../components/protected/notProtected';
 
 export const router = createBrowserRouter([
     {
@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'create',
-                element: <Protected><Create /></Protected>
+                element: <Protected><Create/></Protected>
             }
         ]
     }
