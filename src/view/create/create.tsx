@@ -20,38 +20,40 @@ export const Create = () => {
         .then((data) => dispatch(updateCategories(data.data)))
     }, [])
 
-    return <form ref={formRef} className="row d-flex flex-column justify-content-center align-items-start pt-5 pb-5 mt-5 mb-5" onSubmit={submit}>
-        <div className="form-group col-6 mt-1 mb-1 mx-auto">
-            <input type="text" className="form-control" placeholder="Заголовок" name="title" onChange={change} />
-            {errors && errors.title && <p className="text-danger text-center  mt-2 mb-2">
-                {errors.title}
-            </p>}
-        </div>
-        <div className="form-group col-6 mt-1 mb-1 mx-auto">
-            <input type="text" className="form-control" placeholder="Описание" name="description" onChange={change} />
-            {errors && errors.description && <p className="text-danger text-center mt-2 mb-2">
-                {errors.description}
-            </p>}
-        </div>
-        <div className="form-group col-6 mt-1 mb-1 mx-auto">
-            <input type="text" className="form-control" placeholder="Город" name="city" onChange={change} />
-            {errors && errors.city && <p className="text-danger text-center  mt-2 mb-2">
-                {errors.city}
-            </p>}
-        </div>
-        <div className="form-group col-6 mt-1 mb-1 mx-auto">
-            <input type="text" className="form-control" placeholder="Улица" name="street" onChange={change} />
-        </div>
-        <div className="form-group col-6 mt-1 mb-1 mx-auto">
-            <input type="text" className="form-control" placeholder="Доставка" name="delivery" onChange={change} />
-        </div>
-        <Select/>
-        <div className="form-group col-6 mt-1 mb-1 mx-auto">
-            <input type="text" className="form-control" placeholder="Цена" name="price" onChange={change} />
-        </div>
-        <ImageUpload/>
-        <div className="form-group col-6 mt-1 mb-1 mx-auto">
-            <button type="submit" className="btn btn-dark mt-5 mb-5">Создать объявление</button>
-        </div>
-    </form>
+    return <div className="w-full max-w-xl m-auto">
+        <form ref={formRef} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={submit}>
+            <div className="mb-4">
+                <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Заголовок" name="title" onChange={change} />
+                {errors && errors.title && <p className="text-red-500 text-xs italic mt-2">
+                    {errors.title}
+                </p>}
+            </div>
+            <div className="mb-4">
+                <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Описание" name="description" onChange={change} />
+                {errors && errors.description && <p className="text-red-500 text-xs italic mt-2">
+                    {errors.description}
+                </p>}
+            </div>
+            <div className="mb-4">
+                <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Город" name="city" onChange={change} />
+                {errors && errors.city && <p className="text-red-500 text-xs italic mt-2">
+                    {errors.city}
+                </p>}
+            </div>
+            <div className="mb-4">
+                <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Улица" name="street" onChange={change} />
+            </div>
+            <div className="mb-4">
+                <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Доставка" name="delivery" onChange={change} />
+            </div>
+            <Select/>
+            <div className="mb-4">
+                <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Цена" name="price" onChange={change} />
+            </div>
+            <ImageUpload/>
+            <div className="mb-4">
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Создать объявление</button>
+            </div>
+        </form>
+    </div>
 }
