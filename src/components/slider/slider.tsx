@@ -4,6 +4,7 @@ import { Products } from '../product/type'
 import { useEffect } from 'react'
 
 import { Pagination, Navigation } from 'swiper'
+import { Delayed } from '../delayed/delayed'
 import 'swiper/swiper-bundle.css'
 import "swiper/css"
 
@@ -14,34 +15,40 @@ export const Slider = ({products}: {products: Products[]}) => {
     }, [products])
 
     return  <Swiper
+                className='max-h-96'
                 slidesPerView={3}
             >
                 {products.map((product) =>
-                        <SwiperSlide key={product.id}>
-                            <section className='card col-12'>
-                                <NavLink className="text-dark" to={"/product/" + product.id} key={product.id}>
-                                    <div className="card-header bg-white text-primary">
-                                        <h5 className="list-group-item mt-3">{product.title}</h5>
-                                        <p className="list-group-item">{product.description}</p>
-                                    </div>
+                        <SwiperSlide key={product.id} className='max-h-96 flex items-center shadow-lg m-5 max-w-xs relative'>
+                                <Delayed id={product.id}/>
+                                <NavLink to={"/product/" + product.id} key={product.id} className='max-h-96 w-full'>
                                     {<Swiper 
                                         nested={true}
                                         modules={[Pagination, Navigation]}
                                         pagination={{
                                             dynamicBullets: true,
                                         }}
+                                        className='card-body max-w-xs'
                                     >
-                                        <p className='text-dark mb-5'>Цена: {product.price && product.price.toLocaleString('ru') + ' руб'}</p>
-                                        {product.photos && product.photos.map((photo) => 
+                                        {product.photos && product.photos.length > 0 ? product.photos.map((photo) => 
                                             <SwiperSlide key={photo.id}>
-                                                <div className='card-body'>
-                                                    <img src={process.env.REACT_APP_SERVER + 'assets/' + photo.path} alt={photo.description ?? photo.path} />
-                                                    <p className="card-text text-nowrap m-2 mt-4 text-center">{photo.description}</p>
+                                                <div className='card-body max-w-xs p-5'>
+                                                    <img className='max-w-full rounded-lg max-h-40 hover:scale-110 duration-200' src={process.env.REACT_APP_SERVER + 'assets/' + photo.path} alt={photo.description ?? photo.path} />
                                                 </div>
-                                            </SwiperSlide>)}
+                                            </SwiperSlide>):
+                                            <div className='card-body max-w-xs p-5'>
+                                                <img src={process.env.REACT_APP_SERVER + 'assets/no-image.png'} alt='no.png' className='max-w-full rounded-lg max-h-40' />
+                                            </div>}
                                     </Swiper>}
+                                    <section className='items-center p-4'>
+                                        <div className="px-6 py-4">
+                                            <p className="font-bold text-xl mb-2">{product.title}</p>
+                                        </div>
+                                        <div className="text-lg font-semibold text-slate-500">
+                                            {product.price ? product.price.toLocaleString('ru') : 'Договорная'}
+                                        </div>
+                                    </section>
                                 </NavLink>
-                            </section>
                         </SwiperSlide>
                 )}
             </Swiper>

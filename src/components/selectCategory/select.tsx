@@ -13,15 +13,15 @@ export const Select = () => {
     const categories = useSelector((store: ReduxStore) => store.CategoriesStore)
 
     return  <>
-            <div className="form-group col-6 mt-1 mb-1 mx-auto">
-                <select className="form-control" onChange={changeSelectCategoryTop} onLoad={changeSelectCategoryTop}>
+            <div className="m-5">
+                <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={changeSelectCategoryTop} onLoad={changeSelectCategoryTop}>
                     {categories.map((category) =>
                         <option value={category.name} key={category.id}>{category.name}</option>
                     )}
                 </select>
             </div>
-            <div className="form-group col-6 mt-1 mb-1 mx-auto">
-                <select className="form-control" onChange={changeSelectCategorySub}>
+            <div className="m-5">
+                <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={changeSelectCategorySub}>
                     {categories.map((category) =>
                         top === category.name && category.sub.map((sub) => <option value={sub.id} key={sub.id}>{sub.mpath}</option>)
                     )}

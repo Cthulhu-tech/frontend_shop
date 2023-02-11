@@ -11,11 +11,15 @@ export const Nav = () => {
 
     useEffect(() => {}, [access])
 
-    return <nav className="container-fluid shadow-sm border-bottom bg-dark d-flex justify-content-end">
-        <div className="d-flex mx-5 justify-content-center mt-2 mb-2 align-items-center">
-            <NavLink className="col-1 text-light text-center px-2 mx-1" to='/delayed'><Box2Heart/></NavLink>
-            {!access ? <NavLink className="col-5 text-light text-center px-2 mx-1" to='/auth'>Вход и регистрация</NavLink> : <NavLink className="col-5 text-light text-center px-2 mx-1" to='/user'>Личный кабинет</NavLink>}
-            <NavLink className="col-6 text-light text-center btn btn-primary btn-sm px-2 mx-1" to='/create'>Разместить Объявление</NavLink>
+    return <nav className="sticky top-0 flex justify-between items-center bg-slate-100 shadow-lg h-12 md:flex">
+        <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+            <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
+                <NavLink className="text-sm text-blue-600 font-bold flex items-center hover:text-blue-900 duration-200 cursor-pointer active" to='/delayed'><Box2Heart className="mr-2"/> Избранное</NavLink>
+                {!access 
+                ? <NavLink className="text-sm text-blue-600 font-bold hover:text-blue-900 duration-200 cursor-pointer active" to='/auth'>Вход и регистрация</NavLink> 
+                : <NavLink className="text-sm text-blue-600 font-bold hover:text-blue-900 duration-200 cursor-pointer active" to='/user'>Личный кабинет</NavLink>}
+            </ul>
+            <NavLink className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold rounded-xl transition duration-200" to='/create'>Разместить Объявление</NavLink>
         </div>
     </nav>
 }

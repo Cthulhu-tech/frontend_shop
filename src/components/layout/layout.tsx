@@ -8,7 +8,7 @@ export const Layout = () => {
     return <>
         <Header/>
         <Nav/>
-        <main className="container min-vh-100 mt-2 mb-2 pt-3 pb-3 pl-3 pr-3 d-flex flex-column">
+        <main className="m-auto mt-5 mb-5 p-3 py-6 px-4 sm:p-6 md:py-10 md:px-8">
             <Outlet />
         </main>
         <Footer />
