@@ -22,24 +22,20 @@ export const User = () => {
     }, [])
 
     return <>
-    <section className="card mt-5 mb-5 shadow-sm bg-light">
-        <div className="card-body">
-        <h5 className="card-title">
-            <p className="card-text text-center">{ userAccount?.name + " " + userAccount?.surname }</p>
-        </h5>
-        <ul className="list-group list-group-flush">
-            <li className="list-group-item bg-light mt-3 p-2">
-                <p className="card-text">Телефон: { userAccount?.phone }</p>
-            </li>
-            <li className="list-group-item bg-light mt-3 p-2">
-                <p className="card-text">Город: { userAccount?.city }</p>
-            </li>
-            <li className="list-group-item bg-light mt-3 p-2">
-                <p className="card-text">Email: { userAccount?.email }</p>
-            </li>
-        </ul>
+        <div className="rounded-2xl overflow-hidden shadow-xl max-w-xl my-3 bg-white-100 m-auto mt-5 pt-5">
+            <div className="text-center px-3 pb-6 pt-2">
+                <h1 className="bold font-sans">{ userAccount?.name + " " + userAccount?.surname }</h1>
+                <p className="mt-2 font-sans font-light">{ userAccount?.city ?? 'Не указан' }</p>
+            </div>
+            <div className="text-center px-3 pb-6 pt-2">
+                <h1 className="bold font-sans">Телефон</h1>
+                <p className="mt-2 font-sans font-light">{userAccount?.phone.substring(0,1) + " ( "+userAccount?.phone.substring(1,4)+" ) " + userAccount?.phone.substring(4,7) + " - " + userAccount?.phone.substring(7,9) + " - " + userAccount?.phone.substring(9,11)}</p>
+            </div>
+            <div className="text-center px-3 pb-6 pt-2">
+                <h1 className="bold font-sans">Email</h1>
+                <p className="mt-2 font-sans font-light">{ userAccount?.email }</p>
+            </div>
         </div>
-    </section>
     <ProductComponent/>
   </>
 }
