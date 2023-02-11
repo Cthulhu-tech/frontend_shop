@@ -3,10 +3,13 @@ import { updateCategories } from "../../redux/store/categories"
 import { Select } from "../../components/selectCategory/select"
 import { validationCreate } from "../../utils/validationCreate"
 import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useRef, memo } from 'react'
 import { ReduxStore } from "../../redux/type"
 import { useForm } from "../../hook/useForm"
-import { useEffect, useRef } from 'react'
 import axios from 'axios'
+
+const SelectComponent = memo(Select)
+const ImageUploadComponent = memo(ImageUpload)
 
 export const Create = () => {
 
@@ -46,11 +49,11 @@ export const Create = () => {
             <div className="mb-4">
                 <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Доставка" name="delivery" onChange={change} />
             </div>
-            <Select/>
+            <SelectComponent/>
             <div className="mb-4">
                 <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Цена" name="price" onChange={change} />
             </div>
-            <ImageUpload/>
+            <ImageUploadComponent/>
             <div className="mb-4">
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Создать объявление</button>
             </div>

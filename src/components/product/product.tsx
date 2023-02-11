@@ -1,6 +1,6 @@
+import { LoadingCard } from '../loading/loadingCard'
 import { memo, useEffect, useState } from 'react'
 import { ReduxStore } from '../../redux/type'
-import { Loading } from '../loading/loading'
 import { Slider } from '../slider/slider'
 import { useSelector } from 'react-redux'
 import { Products } from './type'
@@ -25,12 +25,18 @@ export const ProductComponent = () => {
         })
     }, [])
 
-    return   <section className="card shadow-sm bg-light">
-        <div className="card-body">
-        <h5 className="card-title">
-            <p className="card-text text-center">Ваши объявления</p>
-        </h5>
-        {loading ? <Loading/> :
+    return   <section className="bg-light">
+        <div className="relative">
+        <p className="flex-auto text-lg text-center font-semibold text-slate-900 mt-5">Ваши объявления</p>
+        {loading ? 
+        <div className="container mt-5 mx-auto">
+            <div className="flex flex-wrap">
+                <LoadingCard/>
+                <LoadingCard/>
+                <LoadingCard/>
+            </div>
+        </div> 
+        :
         !loading && data && data.length > 0 
         ? 
         <SliderComponent products={data}/>
