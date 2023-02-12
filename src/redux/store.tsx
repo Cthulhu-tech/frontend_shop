@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import { UserAccountStore } from './store/userAccount'
 import { CategoriesStore } from './store/categories'
+import { ProductsStore } from './store/products'
 import { CategoryStore } from './store/category'
 import { ImageStore } from './store/imageStore'
 import { TokenStore } from './store/token'
@@ -11,7 +12,8 @@ export const rootReducer = combineReducers({
     UserAccountStore,
     CategoriesStore,
     ImageStore,
-    CategoryStore
+    CategoryStore,
+    ProductsStore
 });
 
 export type AppDispatch = typeof store.dispatch

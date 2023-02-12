@@ -34,10 +34,35 @@ export type UserAccountStoreType = {
     surname: string | null
 }
 
+export type Photo = {
+    id: number
+    path: string
+    description: string
+}
+
+export type ProductsStoreType = {
+    page: number
+    size: number
+    products: Products[]
+}
+
+export type Products = {
+    active: boolean
+    city: string
+    delivery: boolean
+    description: string
+    id: number
+    photos: Photo[]
+    price: number
+    street: null | string
+    title: string
+}
+
 export type ReduxStore = {
     TokenStore: TokenStoreType
     UserAccountStore: UserAccountStoreType | null
     CategoriesStore: SortCategory[]
     ImageStore: ImageListType[]
     CategoryStore: string
+    ProductsStore: ProductsStoreType
 }
