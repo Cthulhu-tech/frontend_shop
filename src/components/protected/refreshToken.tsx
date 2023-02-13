@@ -1,4 +1,5 @@
 import { updateToken } from '../../redux/store/token'
+import { UpdateDelayed } from './updateDelayed'
 import { Loading } from '../loading/loading'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -15,7 +16,8 @@ export const RefreshToken = (props: {children: React.ReactNode}) => {
             if(data.data.accesstoken) dispatch(updateToken(data.data.accesstoken))
         })
         .finally(() => setLoading(false))
+
     },[])
 
-    return loading ? <Loading/> : <>{props.children}</>
+    return loading ? <Loading/> : <UpdateDelayed>{props.children}</UpdateDelayed>
 }
