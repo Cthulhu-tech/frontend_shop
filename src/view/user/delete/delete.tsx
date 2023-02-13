@@ -22,7 +22,7 @@ export const DeleteComponent = () => {
         })
     }
 
-    return <form className="rounded overflow-hidden shadow-sm bg-slate-50 mx-5 m-5 flex content-center">
+    return <form className="rounded overflow-hidden shadow-sm bg-slate-50 flex content-center max-w-xl m-auto mt-5 mb-5 p-5">
         <input type="password" name="password" onChange={changePassword}/>
         <button onClick={deleteAccount} className="hover:bg-red-100 text-black-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow bg-red-300">Удалить аккаунт</button>
     </form>
