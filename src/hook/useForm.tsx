@@ -13,16 +13,19 @@ export function useForm(validation: (data: ObjectValidation) => useFormCallbackR
     const dispatch = useDispatch()
     const images = useSelector((store: ReduxStore) => store.ImageStore)
     const type = useSelector((store: ReduxStore) => store.CategoryStore)
+    const categoryId = useSelector((store: ReduxStore) => store.CategoryStore)
     const token = useSelector((store: ReduxStore) => store.TokenStore.access)
     const [errors, setErrors] =  useState<ObjectValidation>()
     const [data, setData] = useState<ObjectValidation>({})
 
-    useEffect(() => {}, [data])
+    useEffect(() => {console.log(categoryId)}, [data, type, categoryId])
 
     const submit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
 
+        event.preventDefault()
+        data.categoryId = categoryId
         const {check, error} = validation(data)
+
         setErrors(error)
 
         if(create) {
@@ -37,19 +40,23 @@ export function useForm(validation: (data: ObjectValidation) => useFormCallbackR
                 dispatch(updateToken(data.data.accesstoken))
                 if(!create){
                     setErrors({serverNotError: "Все успешно! Переход на главную страницу"})
-                    setTimeout(() => navigate('/', { replace: true }), 1000)
+                    setTimeout(() => window.location.reload(), 1000)
                 }
                 return
             }    
             if(!create){
                 setTimeout(() => navigate('/auth', { replace: true }), 1000)
                 setErrors({serverNotError: "Все успешно! Переход на страницу авторизации"})
-            }        
+            }
+            if(create) {
+                setTimeout(() => navigate('/user', { replace: true }), 1000)
+                setErrors({serverNotError: "Все успешно! Переход на страницу аккаунта"})
+            }
         })
-        .catch(() => !create && setErrors({serverError: "Логин или пароль имеют ошибку"}))
+        .catch(() => !create ? setErrors({serverError: "Логин или пароль имеют ошибку"}) : setErrors({serverError: "Создания"}))
     }
 
-    const change = (event: ChangeEvent<HTMLInputElement>) => setData({...data, [event.target.name]: event.target.value})
+    const change = (event: ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => setData((prevstate) => { return {...prevstate, [event.target.name]: event.target.value}})
 
     return { change, submit, data, errors }
 }
