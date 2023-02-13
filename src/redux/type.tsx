@@ -14,9 +14,9 @@ export type CategoryNotSorted = {
 }
 
 export type CategoriesAllStore =  {
-    id: number
-    mpath: string
-    parentId: number | null
+    category_id: number
+    category_mpath: string
+    category_parentId: number | null
 }
 
 export type SortCategory = {
@@ -56,6 +56,12 @@ export type Products = {
     price: number
     street: null | string
     title: string
+    user: {
+        firstName: string
+        id: number
+        lastName: string
+        phone: string
+    }
 }
 
 export type ReduxStore = {

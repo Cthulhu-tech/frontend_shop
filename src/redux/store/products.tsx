@@ -8,7 +8,7 @@ const defaultState: ProductsStoreType = {
 
 export const ProductsStore = (state = defaultState, action:Action<string, ProductsStoreType>) => {
     switch (action.type){
-        case "update_products": 
+        case "update_products":
             if(action.payload)
                 return {products: [...state.products ?? null, ...action.payload.products], page: +action.payload.page, size: +action.payload.size}
             return state
